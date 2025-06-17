@@ -1,15 +1,791 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IND SERVICES - AI Solutions & Consulting</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.jsx"></script>
-    <script src="/.gpt_engineer/index.js" type="module"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDRESH 2.0 - भारत की AI शक्ति</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind+Vadodara:wght@400;600;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --saffron: #f97316;
+            --white: #ffffff;
+            --green: #16a34a;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #334155;
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Patriotic Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(249, 115, 22, 0.03) 0%, transparent 20%),
+                linear-gradient(225deg, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+                linear-gradient(315deg, rgba(22, 163, 74, 0.03) 0%, transparent 20%);
+            background-size: 200px 200px;
+            z-index: -1;
+        }
+        
+        .bg-flag {
+            position: fixed;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 200px;
+            background: 
+                linear-gradient(to bottom, 
+                    var(--saffron) 33%, 
+                    var(--white) 33%, 
+                    var(--white) 66%, 
+                    var(--green) 66%);
+            opacity: 0.05;
+            z-index: -1;
+            transform: rotate(15deg);
+            border-radius: 5px;
+        }
+        
+        /* Animated Circles */
+        .floating-circles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.05);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-main {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+        
+        .logo-main span {
+            color: var(--primary);
+        }
+        
+        .logo-hindi {
+            font-family: 'Hind Vadodara', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--saffron);
+            margin-top: 5px;
+        }
+        
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-dark);
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(240, 242, 245, 0.9), rgba(240, 242, 245, 0.9));
+        }
+        
+        .hero-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin: 0 auto 10px;
+            line-height: 1;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-hindi {
+            font-family: 'Hind Vadodara', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--saffron);
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #475569;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .chat-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .chat-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .chat-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0) 45%,
+                rgba(255,255,255,0.2) 48%,
+                rgba(255,255,255,0) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            20% { transform: translateX(100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+        
+        .section-title p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            margin: 0 0 20px 0;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            background: #ecfdf5;
+            color: var(--green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(22, 163, 74, 0.3);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            position: relative;
+        }
+        
+        .stat-value {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: white;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Mission Section */
+        .mission {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .mission-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .mission-point {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .mission-point::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(148, 163, 184, 0.2), transparent);
+        }
+        
+        .mission-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(249, 115, 22, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--saffron);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .mission-text h4 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+        
+        .mission-text p {
+            color: #64748b;
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            color: white;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #94a3b8;
+            padding-top: 30px;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .copyright-hindi {
+            font-family: 'Hind Vadodara', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--saffron);
+            margin-top: 10px;
+        }
+        
+        /* AI Chat Button */
+        .ai-chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        
+        .ai-chat-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-hindi {
+                font-size: 1.8rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-pattern"></div>
+    <div class="bg-flag"></div>
+    <div class="floating-circles" id="floatingCircles"></div>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-main">INDRESH <span>2.0</span></div>
+                <div class="logo-hindi">भारत की AI शक्ति</div>
+            </div>
+            <a href="https://indservices.site" class="back-btn">Back to INDSERVICES</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">AI FOR DIGITAL BHARAT</h1>
+            <div class="hero-hindi">स्वदेशी कृत्रिम बुद्धिमत्ता</div>
+            <p class="hero-subtitle">Building India's future with indigenous artificial intelligence solutions</p>
+            <button class="chat-btn" onclick="window.location.href='https://indreshdangi.github.io/Ai'">
+                <span>Chat with AI Agent</span>
+            </button>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our AI Capabilities</h2>
+                <p>Cutting-edge artificial intelligence solutions designed for India's unique needs</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Multilingual AI</h3>
+                    <p>Advanced natural language processing supporting 22 Indian languages with cultural context.</p>
+                    <span class="feature-tag">Digital India</span>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Smart Coding</h3>
+                    <p>AI-powered code generation and optimization for Indian developers and startups.</p>
+                    <span class="feature-tag">Make in India</span>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Deep Learning</h3>
+                    <p>Self-improving neural networks trained on Indian datasets for localized solutions.</p>
+                    <span class="feature-tag">Atmanirbhar Bharat</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Why INDRESH 2.0</h2>
+                <p style="color: #94a3b8;">Trusted by organizations across India for secure, sovereign AI solutions</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">1ms</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Data Sovereignty</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission for Bharat</h2>
+                <p>Building India's technological future with indigenous AI solutions</p>
+            </div>
+            
+            <div class="mission-points">
+                <div class="mission-point">
+                    <div class="mission-icon">🏭</div>
+                    <div class="mission-text">
+                        <h4>Make in India</h4>
+                        <p>Developing world-class AI solutions within India's borders to reduce foreign dependency.</p>
+                    </div>
+                </div>
+                
+                <div class="mission-point">
+                    <div class="mission-icon">🌐</div>
+                    <div class="mission-text">
+                        <h4>Digital India</h4>
+                        <p>Bridging the digital divide with AI tools accessible in all Indian languages.</p>
+                    </div>
+                </div>
+                
+                <div class="mission-point">
+                    <div class="mission-icon">🔒</div>
+                    <div class="mission-text">
+                        <h4>Secure India</h4>
+                        <p>Ensuring data privacy and security with locally hosted, encrypted AI systems.</p>
+                    </div>
+                </div>
+                
+                <div class="mission-point">
+                    <div class="mission-icon">💡</div>
+                    <div class="mission-text">
+                        <h4>Atmanirbhar Bharat</h4>
+                        <p>Fostering innovation and self-reliance in artificial intelligence technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>INDRESH 2.0</h3>
+                    <p style="color: #94a3b8;">India's sovereign AI platform for the Digital Bharat revolution.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="https://indreshdangi.github.io/Ai">AI Agent</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Email Us</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 INDRESH 2.0 | Proudly Made in Bharat for Digital India</p>
+                <p class="copyright-hindi">भारत में निर्मित - डिजिटल इंडिया के लिए</p>
+            </div>
+        </div>
+    </footer>
+    
+    <button class="ai-chat-button" onclick="window.location.href='https://indreshdangi.github.io/Ai'">
+        <span>AI</span>
+    </button>
+    
+    <script>
+        // Create floating circles
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('floatingCircles');
+            const circleCount = 15;
+            
+            for (let i = 0; i < circleCount; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                
+                // Random properties
+                const size = Math.random() * 100 + 50;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 20 + 20;
+                
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.left = `${posX}%`;
+                circle.style.animationDelay = `${delay}s`;
+                circle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(circle);
+            }
+        });
+    </script>
+</body>
 </html>
