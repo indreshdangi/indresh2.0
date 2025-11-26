@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Chat with Indresh 2.0</title>
+  <style>
+    body{font-family:Arial;padding:16px}
+    #messages{height:60vh;overflow:auto;border:1px solid #ddd;padding:8px}
+    .you{color:blue}
+    .bot{color:green}
+  </style>
+</head>
+<body>
+  <h2>Chat with Indresh 2.0</h2>
+  <div id="messages"></div>
+  <input id="inp" placeholder="Type message..." style="width:70%"/>
+  <button id="send">Send</button>
+
+  <script>
+    const API = 'https://api.indservices.site/api/chat';
+    document.getElementById('send').addEventListener('click', async ()=>{
+      const txt = document.getElementById('inp').value.trim();
+      if(!txt) return;
+      const m = document.createElement('div');
+      m.textContent = 'You: ' + txt;
+      m.className = 'you';
+      document.getElementById('messages').appendChild(m);
+      document.getElementById('inp').value = '';
+      try {
+        const key = prompt('Enter demo API key'); // demo only
+        const res = await fetch(API, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', 'x-api-key': key},
+          body: JSON.stringify({ message: txt, modelKey: 'groq-llama-3.3' })
+        });
+        const data = await res.json();
+        const b = document.createElement('div');
+        b.className = 'bot';
+        b.textContent = 'Bot: ' + (data.reply || data.error || JSON.stringify(data));
+        document.getElementById('messages').appendChild(b);
+      } catch(e) {
+        const err = document.createElement('div');
+        err.textContent = 'Network error: ' + e.message;
+        document.getElementById('messages').appendChild(err);
+      }
+    });
+  </script>
+</body>
+</html>
