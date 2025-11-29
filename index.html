@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Teko:wght@400;500;600&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Markdown Parser for AI response -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
         :root {
@@ -28,11 +26,27 @@
             overflow-x: hidden;
         }
 
-        /* Tiranga Flag Gradient for Icon */
-        .fa-flag-tiranga {
-            background: linear-gradient(180deg, #FF9933 30%, #FFFFFF 30%, #FFFFFF 70%, #138808 70%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Real CSS Tiranga Box */
+        .real-tiranga {
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(to bottom, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
+            position: relative;
+            border-radius: 2px;
+            display: inline-block;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+        /* Ashoka Chakra */
+        .real-tiranga::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background-color: #000080;
+            border-radius: 50%;
         }
 
         /* Text Gradient Animation */
@@ -85,17 +99,6 @@
         .stat-border {
             border-left: 2px solid var(--neon-blue);
         }
-
-        /* Loading Spinner */
-        .loader {
-            border: 3px solid rgba(255,255,255,0.1);
-            border-left-color: #00f3ff;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="flex flex-col min-h-screen relative">
@@ -108,17 +111,17 @@
         
         <!-- Header Section -->
         <div class="text-center w-full animate-fade-in-down">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-1.5 rounded-full mb-5 backdrop-blur-md">
-                <span class="text-orange-400 text-lg hindi-title tracking-wide">आत्मनिर्भर भारत</span>
-                <i class="fas fa-flag fa-flag-tiranga text-lg"></i>
+            <!-- Badge: Atmanirbhar Bharat in Hindi with CSS Tiranga -->
+            <div class="inline-flex items-center gap-3 border border-white/10 bg-white/5 px-4 py-1.5 rounded-full mb-5 backdrop-blur-md hover:bg-white/10 transition">
+                <span class="text-orange-400 text-xl hindi-title tracking-wide pt-1">आत्मनिर्भर भारत</span>
+                <div class="real-tiranga"></div>
             </div>
             
             <h1 class="text-6xl font-bold tracking-tighter leading-none mb-1">
                 INDRESH <span class="text-blue-500 text-5xl align-top">2.0</span>
             </h1>
             <p class="text-xl text-gray-400 tracking-widest uppercase text-xs mt-2">
-                Digital Bharat Initiative
+                DIGITAL BHARAT INITIATIVE
             </p>
         </div>
 
@@ -134,75 +137,56 @@
 
             <h2 class="text-2xl font-bold mb-2">AI Capabilities</h2>
             
-            <p class="text-gray-100 text-base hindi-text leading-relaxed mb-6 font-medium shadow-black drop-shadow-md">
-                आत्मनिर्भर भारत का सपना, डिजिटल दुनिया में अपना। <br>
-                <span class="text-blue-300">INDRESH 2.0</span> के साथ भविष्य बनाइये।
-            </p>
+            <!-- Visible Hindi Text (Balanced Brightness) -->
+            <div class="mb-6 px-2">
+                <p class="text-gray-200 text-lg hindi-text leading-relaxed font-medium">
+                    आत्मनिर्भर भारत का सपना, डिजिटल दुनिया में अपना। <br>
+                    <span class="text-blue-400 font-bold">INDRESH 2.0</span> के साथ भविष्य बनाइये।
+                </p>
+            </div>
             
+            <!-- Action Button -->
             <a href="https://api.indservices.site" class="block w-full">
                 <button class="w-full glow-btn bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 relative overflow-hidden">
-                    <span class="relative z-10">START CHAT NOW</span>
-                    <i class="fas fa-paper-plane relative z-10"></i>
+                    <span class="relative z-10 tracking-wider">START AI CHAT</span>
+                    <i class="fas fa-arrow-right relative z-10"></i>
+                    <!-- Shine Effect -->
                     <div class="absolute top-0 -left-10 w-10 h-full bg-white/20 skew-x-12 animate-[shimmer_2s_infinite]"></div>
                 </button>
             </a>
-            <p class="text-[10px] text-gray-500 mt-3">Powered by Advanced Neural Networks</p>
+            <p class="text-[10px] text-gray-500 mt-3">Advanced Neural Networks • Made in Bharat</p>
         </div>
 
-        <!-- AI Playground Section (NEW GEMINI FEATURE) -->
-        <div class="glass-card w-full rounded-2xl p-5 border border-purple-500/30">
-            <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <i class="fas fa-magic text-purple-400"></i> Live AI Demo
-            </h3>
-            <div class="space-y-3">
-                <input type="text" id="aiInput" placeholder="Enter topic (e.g., Digital India)..." 
-                    class="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500 transition">
-                
-                <div class="flex gap-2">
-                    <button onclick="askGemini('slogan')" class="flex-1 bg-purple-600/20 hover:bg-purple-600/40 border border-purple-500/50 py-2 rounded-lg text-xs font-bold text-purple-300 transition">
-                        GENERATE SLOGAN
-                    </button>
-                    <button onclick="askGemini('explain')" class="flex-1 bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/50 py-2 rounded-lg text-xs font-bold text-blue-300 transition">
-                        EXPLAIN IN HINDI
-                    </button>
+        <!-- Why Indresh / Stats Grid -->
+        <div class="w-full">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 pl-2 border-l-2 border-blue-500">Why INDRESH 2.0?</h3>
+            
+            <div class="grid grid-cols-2 gap-3 w-full">
+                <div class="glass-card p-4 rounded-xl stat-border border-l-cyan-400">
+                    <div class="text-2xl font-bold text-white">99.9%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Accuracy</div>
                 </div>
-
-                <!-- Result Area -->
-                <div id="aiResult" class="hidden min-h-[60px] p-3 bg-black/30 rounded-lg text-sm text-gray-300 border border-white/5 relative">
-                    <div id="loadingSpinner" class="hidden absolute inset-0 flex items-center justify-center bg-black/80 z-10 rounded-lg">
-                        <div class="loader"></div>
-                    </div>
-                    <div id="aiTextContent"></div>
+                <div class="glass-card p-4 rounded-xl stat-border border-l-purple-500">
+                    <div class="text-2xl font-bold text-white">24/7</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Uptime</div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-2 gap-3 w-full">
-            <div class="glass-card p-4 rounded-xl stat-border border-l-cyan-400">
-                <div class="text-2xl font-bold text-white">99.9%</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider">Accuracy</div>
-            </div>
-            <div class="glass-card p-4 rounded-xl stat-border border-l-purple-500">
-                <div class="text-2xl font-bold text-white">24/7</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider">Uptime</div>
-            </div>
-            <div class="glass-card p-4 rounded-xl stat-border border-l-green-500">
-                <div class="text-2xl font-bold text-white">1ms</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider">Response</div>
-            </div>
-            <div class="glass-card p-4 rounded-xl stat-border border-l-orange-500">
-                <div class="text-2xl font-bold text-white">100%</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider">Sovereignty</div>
+                <div class="glass-card p-4 rounded-xl stat-border border-l-green-500">
+                    <div class="text-2xl font-bold text-white">1ms</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Response Time</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl stat-border border-l-orange-500">
+                    <div class="text-2xl font-bold text-white">100%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Data Sovereignty</div>
+                </div>
             </div>
         </div>
 
         <!-- Mission Section -->
-        <div class="w-full text-center py-4">
+        <div class="w-full text-center py-6 glass-card rounded-xl mt-2 border-t border-orange-500/20">
             <i class="fas fa-fingerprint text-4xl text-gray-600 mb-3"></i>
             <h3 class="text-xl font-bold text-tricolor mb-2">Our Mission for Bharat</h3>
-            <p class="text-sm text-gray-400 px-4">
-                Making technology accessible, secure, and purely Indian for every citizen.
+            <p class="text-sm text-gray-400 px-4 mb-4">
+                Cutting-edge artificial intelligence solutions designed for India's unique needs. Trusted by organizations across India.
             </p>
         </div>
 
@@ -210,25 +194,28 @@
 
     <!-- Footer -->
     <footer class="w-full p-8 text-center bg-black/40 backdrop-blur-lg border-t border-white/5 mt-auto z-10">
-        <div class="max-w-md mx-auto space-y-3">
-            <p class="text-xs text-gray-500 font-mono">
-                &copy; 2023 INDRESH 2.0 | Proudly Made in Bharat for Digital India
-            </p>
+        <div class="max-w-md mx-auto space-y-4">
+            <!-- Indresh Dangi Branding -->
+            <div class="mb-4">
+                <p class="text-sm text-gray-400 uppercase tracking-widest text-[10px]">Vision by Founder</p>
+                <p class="text-lg font-bold text-white tracking-wide">Indresh Dangi</p>
+            </div>
+
             <div class="h-px w-16 bg-gray-700 mx-auto"></div>
+            
             <a href="https://indreshdangi.github.io/indservices" class="block group">
-                <p class="text-sm hindi-text text-gray-300 group-hover:text-blue-400 transition-colors">
+                <p class="text-sm hindi-text text-gray-300 group-hover:text-blue-400 transition-colors font-medium">
                     भारत में निर्मित - डिजिटल इंडिया के लिए <span class="text-red-500">❤️</span>
                 </p>
-                <span class="text-[10px] text-gray-600 group-hover:text-blue-500">
-                    Made by INDSERVICES <i class="fas fa-external-link-alt ml-1"></i>
-                </span>
+                <p class="text-[10px] text-gray-600 mt-1">
+                    © 2023 INDRESH 2.0 | Proudly Made in Bharat
+                </p>
             </a>
         </div>
     </footer>
 
-    <!-- Logic for Smoke and AI -->
+    <!-- Logic for Smoke Animation -->
     <script>
-        // --- SMOKE ANIMATION ---
         const canvas = document.getElementById('smokeCanvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -287,63 +274,6 @@
         }
         initParticles();
         animate();
-
-        // --- GEMINI AI INTEGRATION ---
-        
-        // NOTE: The API key is usually injected by the environment. 
-        // If you run this locally, you must insert your key below.
-        const apiKey = ""; 
-
-        async function askGemini(mode) {
-            const inputField = document.getElementById('aiInput');
-            const resultBox = document.getElementById('aiResult');
-            const textContent = document.getElementById('aiTextContent');
-            const loader = document.getElementById('loadingSpinner');
-            
-            const userText = inputField.value.trim();
-            if (!userText) {
-                alert("Please enter a topic first!");
-                return;
-            }
-
-            // Show UI
-            resultBox.classList.remove('hidden');
-            loader.classList.remove('hidden');
-            textContent.innerHTML = "";
-
-            let prompt = "";
-            if (mode === 'slogan') {
-                prompt = `Write a short, powerful, patriotic slogan in Hindi regarding: ${userText}. Keep it inspiring and poetic.`;
-            } else if (mode === 'explain') {
-                prompt = `Explain this tech concept simply in Hindi for an Indian audience: ${userText}. Keep it under 50 words.`;
-            }
-
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.error) {
-                    throw new Error(data.error.message);
-                }
-
-                const aiResponse = data.candidates[0].content.parts[0].text;
-                // Parse markdown to HTML
-                textContent.innerHTML = marked.parse(aiResponse);
-
-            } catch (error) {
-                console.error("AI Error:", error);
-                textContent.innerHTML = `<span class="text-red-400">Error: Could not connect to AI. (Check API Key)</span>`;
-            } finally {
-                loader.classList.add('hidden');
-            }
-        }
     </script>
 </body>
 </html>
