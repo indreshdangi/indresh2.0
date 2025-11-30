@@ -64,11 +64,11 @@
 
         /* Glowing Button */
         .glow-btn {
-            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
             transition: all 0.3s ease;
         }
         .glow-btn:hover {
-            box-shadow: 0 0 25px rgba(0, 123, 255, 0.8), 0 0 50px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.6), 0 0 50px rgba(0, 123, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -145,16 +145,30 @@
                 </p>
             </div>
             
-            <!-- Action Button -->
-            <a href="https://api.indservices.site" class="block w-full">
-                <button class="w-full glow-btn bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 relative overflow-hidden">
-                    <span class="relative z-10 tracking-wider">START AI CHAT</span>
-                    <i class="fas fa-arrow-right relative z-10"></i>
-                    <!-- Shine Effect -->
-                    <div class="absolute top-0 -left-10 w-10 h-full bg-white/20 skew-x-12 animate-[shimmer_2s_infinite]"></div>
-                </button>
-            </a>
-            <p class="text-[10px] text-gray-500 mt-3">Advanced Neural Networks • Made in Bharat</p>
+            <!-- Action Buttons Container -->
+            <div class="w-full flex flex-col gap-4">
+                <!-- Chat Button -->
+                <a href="https://api.indservices.site" class="block w-full">
+                    <button class="w-full glow-btn bg-gradient-to-r from-blue-700 via-blue-600 to-purple-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 relative overflow-hidden">
+                        <span class="relative z-10 tracking-wider">START AI CHAT</span>
+                        <i class="fas fa-arrow-right relative z-10"></i>
+                        <!-- Shine Effect -->
+                        <div class="absolute top-0 -left-10 w-10 h-full bg-white/20 skew-x-12 animate-[shimmer_2s_infinite]"></div>
+                    </button>
+                </a>
+
+                <!-- NEW Download App Button -->
+                <a href="Indresh.apk" class="block w-full" download>
+                    <button class="w-full glow-btn bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 relative overflow-hidden border border-cyan-500/30">
+                        <span class="relative z-10 tracking-wider">DOWNLOAD APP</span>
+                        <i class="fas fa-cloud-arrow-down relative z-10 text-lg"></i>
+                        <!-- Shine Effect -->
+                        <div class="absolute top-0 -left-10 w-10 h-full bg-white/20 skew-x-12 animate-[shimmer_2s_infinite]" style="animation-delay: 0.5s;"></div>
+                    </button>
+                </a>
+            </div>
+
+            <p class="text-[10px] text-gray-500 mt-4">Advanced Neural Networks • Made in Bharat</p>
         </div>
 
         <!-- Why Indresh / Stats Grid -->
